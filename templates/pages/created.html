@@ -1,0 +1,19 @@
+{% extends 'components/base.html' %}
+{% load i18n %}
+{% load static %}
+{% block content %}
+    {% include 'components/menu.html' %}
+    <section>
+        <div class="container d-flex justify-content-center">
+            <div class="text-justify w-75">
+                <p class="h3 py-3">Papersound é um projeto em desenvolvimento que tem como objetivo, trazer uma rede social adaptativa, 
+                   com a possibilidade de deficientes visuais e pessoas sem deficiência utilizarem a mesma rede social, 
+                   desta forma ligando pessoas virtualmente de forma que não é possível pelas redes sociais disponíveis atualmente. 
+                   Se você é novo por aqui você pode começar criando uma conta através do botão <a href="{% url 'cadastro' %}">cadastrar-se</a>, 
+                   se tem alguma sugestão pode <a href="{% url 'contato' %}">entrar em contato</a> com a equipe de desenvolvimento ou contribuir diretamente no repositório oficial no <a href="https://github.com/JN513/papersound">Github</a>.
+                </p>
+            </div>
+        </div>
+    </section>
+    {% include 'components/footer.html' %}
+{% endblock %}

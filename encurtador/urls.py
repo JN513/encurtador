@@ -15,7 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.views.decorators.csrf import csrf_exempt
+from core import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', views.home, name='home'),
+    path('create_url/', views.create_url, name='create_url'),
+    path('url', views.url, name='url'),
+    path('<str:hash>',views.redirect, name='redirect'),
 ]
