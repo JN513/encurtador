@@ -1,0 +1,14 @@
+{% extends 'components/base.html' %}
+{% load i18n %}
+{% load static %}
+{% block content %}
+    {% include 'components/menu.html' %}
+    <section>
+        <form action="{% url 'create_url' %}" method='POST'>{% csrf_token %}
+            <input type="text" name='url', id='url' required>
+            <button type='submit'>gerar</button>
+        </form>
+    </section>
+
+    {% include 'components/footer.html' %}
+{% endblock %}

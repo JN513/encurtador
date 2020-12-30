@@ -3,17 +3,43 @@
 {% load static %}
 {% block content %}
     {% include 'components/menu.html' %}
-    <section>
-        <div class="container d-flex justify-content-center">
-            <div class="text-justify w-75">
-                <p class="h3 py-3">Papersound é um projeto em desenvolvimento que tem como objetivo, trazer uma rede social adaptativa, 
-                   com a possibilidade de deficientes visuais e pessoas sem deficiência utilizarem a mesma rede social, 
-                   desta forma ligando pessoas virtualmente de forma que não é possível pelas redes sociais disponíveis atualmente. 
-                   Se você é novo por aqui você pode começar criando uma conta através do botão <a href="{% url 'cadastro' %}">cadastrar-se</a>, 
-                   se tem alguma sugestão pode <a href="{% url 'contato' %}">entrar em contato</a> com a equipe de desenvolvimento ou contribuir diretamente no repositório oficial no <a href="https://github.com/JN513/papersound">Github</a>.
-                </p>
-            </div>
-        </div>
+    <section class="container">
+        <p>Sua Url:</p>
+        <br>
+        <a href='{{full_url}}'>{{full_url}}</a>
+        <br>
+        <p>Url encurtada:</p>
+        <br>
+        <a href='https://alfa-encurtador.herokuapp.com/{{hash}}'>https://alfa-encurtador.herokuapp.com/{{hash}}</a>
+        <br>
+        <div id="qrcode"></div>
+        <br>        
+
+        <a id="downloadLink" download="qrcode.png">Baixar QRcode.</a>
     </section>
+
+    <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+    <script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/130527/qrcode.js'></script>
+    <script>
+        $(document).ready(function(){
+
+            // Clear Previous QR Code
+            $('#qrcode').empty();
+
+            // Set Size to Match User Input
+            $('#qrcode').css({
+                'width' : 128,
+                'height' : 128
+            })
+
+            // Generate and Output QR Code
+            $('#qrcode').qrcode({width: 128,height: 128,text: 'https://alfa-encurtador.herokuapp.com/{{hash}}'});
+            var canvas = document.getElementsByTagName("canvas")
+            const downloadURL = canvas[0].toDataURL("image/png");
+            document.getElementById('downloadLink').href = downloadURL;
+
+        });
+
+    </script>
     {% include 'components/footer.html' %}
 {% endblock %}
