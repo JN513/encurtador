@@ -1,4 +1,4 @@
-{% extends 'components/base.html' %}
+{% extends 'base.html' %}
 {% load i18n %}
 {% load static %}
 {% block content %}
@@ -10,7 +10,7 @@
         <br>
         <p>Url encurtada:</p>
         <br>
-        <a href='https://alfa-encurtador.herokuapp.com/{{hash}}'>https://alfa-encurtador.herokuapp.com/{{hash}}</a>
+        <a href='http://localhost:8000/{{hash}}'>http://localhost:8000/{{hash}}</a>
         <br>
         <div id="qrcode"></div>
         <br>        
@@ -33,7 +33,7 @@
             })
 
             // Generate and Output QR Code
-            $('#qrcode').qrcode({width: 128,height: 128,text: 'https://alfa-encurtador.herokuapp.com/{{hash}}'});
+            $('#qrcode').qrcode({width: 128,height: 128,text: 'http://localhost:8000/{{hash}}'});
             var canvas = document.getElementsByTagName("canvas")
             const downloadURL = canvas[0].toDataURL("image/png");
             document.getElementById('downloadLink').href = downloadURL;

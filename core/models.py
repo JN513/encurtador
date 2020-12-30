@@ -3,9 +3,9 @@ from hashlib import md5
 from django.utils import timezone
 from django.core.validators import URLValidator
 
-
+#validators=[URLValidator()]
 class Url(models.Model):
-    full_url = models.URLField(unique=True, validators=[URLValidator()])
+    full_url = models.URLField(unique=True)
     short_url = models.URLField(unique=True, blank=True)
     clicks = models.IntegerField(default=0, blank=True)
     created = models.DateTimeField(default=timezone.now, blank=True)
@@ -15,6 +15,8 @@ class Url(models.Model):
         self.save()
 
     def save(self, *args, **kwargs):
+        if not 'http://' in self.full_url and not 'https://' in self.full_url:
+            self.full_url = 'http://'+self.full_url
         if not self.id:
             self.short_url = md5(self.full_url.encode()).hexdigest()[:10]
 
