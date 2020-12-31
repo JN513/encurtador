@@ -3,10 +3,16 @@
 {% load static %}
 {% block content %}
     {% include 'components/menu.html' %}
-    <section>
+    <section class='container p-4'>
+        {% include 'components/alertas.html' %}
         <form action="{% url 'create_url' %}" method='POST'>{% csrf_token %}
-            <input type="text" name='url', id='url' required>
-            <button type='submit'>gerar</button>
+            <div class='form-group row'>
+                <label for="url" class='text-body col-form-label col-sm-1'>URL:</label>
+                <div class='col-sm-11'>
+                    <input type="text" name='url', id='url' class='form-control text-body' placeholder='Insira sua url' required>
+                </div>
+            </div>
+            <button type='submit' class='btn btn-primary mb-2'>Gerar</button>
         </form>
     </section>
 

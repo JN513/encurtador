@@ -3,10 +3,13 @@
 {% load static %}
 {% block content %}
     {% include 'components/menu.html' %}
+    
     <section class="container">
-        <p>Sua Url:</p>
-        <br>
-        <a href='{{full_url}}'>{{full_url}}</a>
+        {% include 'components/alertas.html' %}
+        <div class='d-flex justify-content-center'>
+            <p class='text-body'>Sua Url: </p>
+            <a href='{{full_url}}'>{{full_url}}</a>
+        </div>
         <br>
         <p>Url encurtada:</p>
         <br>

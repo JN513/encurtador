@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404, HttpResponse
 from django.http import HttpResponseRedirect
+from django.contrib import messages
+from django.utils.translation import ugettext as _
 from .models import Url
 
 # Create your views here.
@@ -9,6 +11,12 @@ def home(request):
 
 def create_url(request):
     url = request.POST['url']
+
+    if Url.objects.filter(full_url=url).exists():
+        menssagem = _ ('Você precisar estar logado para realizar esta ação.')
+        messages.sucess(request, menssagem)
+        return redirect('index',)
+
     url = Url(full_url=url)
     url.save()
 

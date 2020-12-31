@@ -20,8 +20,8 @@ from core import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.home, name='home'),
+    path('', views.home, name='index'),
     path('create_url/', views.create_url, name='create_url'),
     path('url', views.url, name='url'),
-    path('<str:hash>',views.redirect, name='redirect'),
+    path('url/<str:hash>/',views.redirect, name='redirect'),
 ]
