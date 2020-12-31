@@ -6,14 +6,15 @@
     
     <section class="container">
         {% include 'components/alertas.html' %}
-        <div class='d-flex justify-content-center'>
+        <div class='d-flex'>
             <p class='text-body'>Sua Url: </p>
-            <a href='{{full_url}}'>{{full_url}}</a>
+            <a href='{{full_url}}' class='text-body'>{{full_url}}</a>
         </div>
         <br>
-        <p>Url encurtada:</p>
-        <br>
-        <a href='http://localhost:8000/{{hash}}'>http://localhost:8000/{{hash}}</a>
+        <div class='d-flex'>
+            <p class='text-body'>Url encurtada: </p>
+            <a href='http://localhost:8000/{{hash}}' class='text-body'>http://localhost:8000/{{hash}}</a>
+        </div>
         <br>
         <div id="qrcode"></div>
         <br>        
