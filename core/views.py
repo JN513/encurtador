@@ -3,6 +3,7 @@ from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.utils.translation import ugettext as _
 from .models import Url
+from django.utils import timezone
 
 # Create your views here.
 
@@ -13,9 +14,9 @@ def create_url(request):
     url = request.POST['url']
 
     if Url.objects.filter(full_url=url).exists():
-        menssagem = _ ('Você precisar estar logado para realizar esta ação.')
+        menssagem = _ ('Url já existente')
         messages.sucess(request, menssagem)
-        return redirect('index',)
+        return redirect('index')
 
     url = Url(full_url=url)
     url.save()
@@ -30,6 +31,11 @@ def create_url(request):
 def redirect(request, hash):
     url = get_object_or_404(Url, short_url=hash)
     url.clicked()
+    tempo = (timezone.now - url.created).total_seconds()
+    if tempo/60 > url.duracao:
+        menssagem = _ ('Url expirada')
+        messages.sucess(request, menssagem)
+        return redirect('index')
 
     return HttpResponseRedirect(url.full_url)
 

@@ -9,6 +9,7 @@ class Url(models.Model):
     short_url = models.URLField(unique=True, blank=True)
     clicks = models.IntegerField(default=0, blank=True)
     created = models.DateTimeField(default=timezone.now, blank=True)
+    duracao = models.IntegerField(default=5, blank=True)
 
     def clicked(self):
         self.clicks += 1
