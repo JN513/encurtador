@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.utils.translation import ugettext as _
 from .models import Url
 from django.utils import timezone
+from datetime import  datetime
 
 # Create your views here.
 
@@ -31,10 +32,13 @@ def create_url(request):
 def redirect(request, hash):
     url = get_object_or_404(Url, short_url=hash)
     url.clicked()
-    tempo = (timezone.now - url.created).total_seconds()
+    agora = timezone.now()
+    data = url.created
+
+    tempo = (agora - data).total_seconds()
     if tempo/60 > url.duracao:
         menssagem = _ ('Url expirada')
-        messages.sucess(request, menssagem)
+        messages.success(request, menssagem)
         return redirect('index')
 
     return HttpResponseRedirect(url.full_url)

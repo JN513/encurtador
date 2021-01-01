@@ -6,7 +6,7 @@ from django.core.validators import URLValidator
 #validators=[URLValidator()]
 class Url(models.Model):
     full_url = models.URLField(unique=True)
-    short_url = models.URLField(unique=True, blank=True)
+    short_url = models.TextField(unique=True, blank=True)
     clicks = models.IntegerField(default=0, blank=True)
     created = models.DateTimeField(default=timezone.now, blank=True)
     duracao = models.IntegerField(default=5, blank=True)
